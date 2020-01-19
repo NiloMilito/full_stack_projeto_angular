@@ -1,0 +1,56 @@
+<mat-toolbar>
+    <mat-toolbar-row>
+      <button mat-icon-button matTooltip="Voltar" (click)="voltar()">
+        <mat-icon>arrow_back</mat-icon>
+      </button>{{ title }}
+    </mat-toolbar-row>
+  </mat-toolbar>
+  
+  <div class="edit">
+    <form [formGroup]="formulario" class="mat-elevation-z3" (ngSubmit)="enviar()">
+  
+      <mat-form-field>
+        <input type="text"
+               matInput
+               placeholder="Login"
+               name="login"
+               formControlName="login">
+        <mat-error *ngIf="login.errors?.required">
+          Login é obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field>
+        <input type="text"
+            matInput
+            placeholder="Senha"
+            name="senha"
+            formControlName="senha">
+
+        <mat-error *ngIf="senha.errors?.required">
+        Senha é obrigatório
+        </mat-error>
+        <input type="password"
+               matInput
+               placeholder="Confirmar Senha"
+               formControlName="confirmSenha"
+               name="confirmSenha">
+  
+        <mat-error *ngIf="confirmSenha.errors?.required">
+          Senha é obrigatória
+        </mat-error>
+        <mat-error *ngIf="confirmSenha.errors?.senhaInvalido">
+          Senha inválida {{confirmSenha.errors?.senhaInvalido.descricao}}
+        </mat-error>
+      </mat-form-field>
+  
+      <div class="action">
+        <button mat-raised-button type="submit" color="primary">
+          Enviar
+        </button>
+      </div>
+  
+    </form>
+  </div>
+  
+  
